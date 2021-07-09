@@ -1,0 +1,43 @@
+<NodeEditor>
+    nodes: nodes_container
+    canvas:
+        Color:
+            rgb: 0, 0, 1
+        Rectangle:
+            size: self.size
+            pos: self.pos
+    NodesContainer:
+        id: nodes_container
+
+        renderer: root.renderer
+        provider: root.provider
+
+        do_rotation: False
+        do_collide_after_children: True
+
+<NodeConnector>
+
+
+<VisualNode>
+    renderer: self.parent.renderer if self.parent else None
+    provider: self.parent.provider if self.parent else None
+    text: "Hello World"
+    drag_rectangle: self.x, self.y, self.width, self.height
+    drag_timeout: 10000
+    drag_distance: 0
+    size: (self.inner.size[0] + 20, self.inner.size[1] + 20) if self.inner else (100, 100)
+#    size: (100, 100)
+    canvas:
+        Color:
+            rgb: 0.5, 0.5, 0.5
+        Rectangle:
+            pos: 5, 5
+            size: self.size[0]-10, self.size[1]-10
+
+
+<FullNodeEditor>
+    NodeEditor:
+        size: root.size
+        renderer: root.renderer
+        provider: root.provider
+        
